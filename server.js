@@ -2,6 +2,22 @@ var fs = require('fs');
 var path = require('path');
 var Twit = require('twit');
 var config = require(path.join(__dirname, 'config.js'));
+var express = require('express');
+var routes = require('./routes/index');
+var exp_hbs = require('express-handlebars');
+
+var app = express();
+
+app.engine('.hbs', exp_hbs({extname:'.hbs'}));
+app.set('view engine', '.hbs');
+
+app.use('/', routes);
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log('Tweetbot running on port 3000');
+});
+
+module.exports = app;
 
 var T = new Twit(config);
 
@@ -23,6 +39,7 @@ function pick_random_image(){
   return mpls_images[Math.floor(Math.random() * mpls_images.length)];
 }
 
+//function to upload random image
 function upload_random_image(){
   console.log('Opening an image...');
   var image_path = path.join(__dirname, '/images/' + pick_random_image()),
@@ -57,7 +74,7 @@ function upload_random_image(){
 
 setInterval(
   upload_random_image,
-  100000
+  360000
 );
 
 var Twitter = new Twit(config);
@@ -96,7 +113,7 @@ else {
 }
 
 retweet();
-setInterval(retweet, 180000);
+setInterval(retweet, 300000);
 
 //Streams API to interact with a user
 //Set up a user Stream
@@ -107,8 +124,8 @@ stream.on('follow', followed);
 function followed(event){
   console.log('Follow event is running');
   //get user's twitter handle
-  var name = event.source.name,
-      screenName = event.source.screen_name;
+  var name = event.source.name;
+  var screenName = event.source.screen_name;
   //function to reply back to follower
   tweetNow('@' + screenName + ' Thanks for the follow!');
 }
