@@ -5,6 +5,14 @@ var config = require(path.join(__dirname, 'config.js'));
 var express = require('express');
 var routes = require('./routes/index');
 var exp_hbs = require('express-handlebars');
+var TwitterBot = require('node-twitterbot').TwitterBot;
+
+var Bot = new TwitterBot({
+ consumer_key: process.env.BOT_CONSUMER_KEY,
+ consumer_secret: process.env.BOT_CONSUMER_SECRET,
+ access_token: process.env.BOT_ACCESS_TOKEN,
+ access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
+});
 
 var app = express();
 
@@ -72,10 +80,10 @@ function upload_random_image(){
 });
 }
 
-setInterval(
-  upload_random_image,
-  360000
-);
+// setInterval(
+//   upload_random_image,
+//   100000
+// );
 
 var Twitter = new Twit(config);
 
@@ -113,7 +121,7 @@ else {
 }
 
 retweet();
-setInterval(retweet, 300000);
+// setInterval(retweet, 300000);
 
 //Streams API to interact with a user
 //Set up a user Stream
