@@ -5,14 +5,6 @@ var config = require(path.join(__dirname, 'config.js'));
 var express = require('express');
 var routes = require('./routes/index');
 var exp_hbs = require('express-handlebars');
-var TwitterBot = require('node-twitterbot').TwitterBot;
-
-var Bot = new TwitterBot({
- consumer_key: process.env.BOT_CONSUMER_KEY,
- consumer_secret: process.env.BOT_CONSUMER_SECRET,
- access_token: process.env.BOT_ACCESS_TOKEN,
- access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
-});
 
 var app = express();
 
