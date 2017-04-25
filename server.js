@@ -72,14 +72,14 @@ function upload_random_image(){
 });
 }
 
-setInterval(upload_random_image, 28800000);
+setInterval(upload_random_image, 43200000);
 
 var Twitter = new Twit(config);
 
 //query to find tweets based on params
 var retweet = function(){
     var params = {
-      q: '#mpls, #Mpls',  //hashtags to query
+      q: '#mpls, #Mpls, #NEmpls',  //hashtags to query
       result_type: 'recent',
       lang: 'en'
     }
