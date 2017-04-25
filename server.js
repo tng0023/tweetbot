@@ -72,10 +72,7 @@ function upload_random_image(){
 });
 }
 
-setInterval(
-  upload_random_image,
-  86400000
-);
+setInterval(upload_random_image, 28800000);
 
 var Twitter = new Twit(config);
 
