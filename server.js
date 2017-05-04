@@ -72,7 +72,7 @@ function upload_random_image(){
 });
 }
 
-setInterval(upload_random_image, 43200000);
+setInterval(upload_random_image, 21600000);
 
 var Twitter = new Twit(config);
 
@@ -110,7 +110,7 @@ else {
 }
 
 retweet();
-setInterval(retweet, 43200000);
+setInterval(retweet, 21600000);
 
 //Streams API to interact with a user
 //Set up a user Stream
